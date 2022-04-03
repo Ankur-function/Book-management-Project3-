@@ -1,4 +1,5 @@
-const validator = require("email-validator");
+ /*
+ const validator = require("email-validator");
 const mongoose = require("mongoose")
 
 const isValid = function (value) {
@@ -34,4 +35,4 @@ const isValidSyntaxOfEmail = function (value) {
 module.exports.isValid = isValid
 module.exports.isValidRequestBody = isValidRequestBody
 module.exports.isValidMobileNum = isValidMobileNum
-module.exports.isValidSyntaxOfEmail = isValidSyntaxOfEmail
+module.exports.isValidSyntaxOfEmail = isValidSyntaxOfEmail */

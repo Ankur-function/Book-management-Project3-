@@ -1,21 +1,33 @@
-const express = require('express');
-const router = express.Router();
-const CollegeController=require("../controller/collegeController")
-const InternController=require("../controller/internController")
+const express=require('express');
+const router=express.Router();
+const UserController=require('../controller/userController')
+const BookController = require("../controller/bookController")
+const ReviewController = require("../controller/reviewController")
+const middleware = require("../middleware/auth")
 
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-router.post("/functionup/colleges",CollegeController.createCollege )
-
-router.post("/functionup/interns", InternController.createIntern)
-
-router.get("/functionup/collegeDetails", InternController.getCollegeDetails)
 
 
+router.post('/register',UserController.createUser )
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+router.post('/login',UserController.loginUser )
+
+router.post('/books',middleware.authenticate, BookController.createBook)
+
+router.post('/books/:bookId/review',ReviewController.createReview)
+
+router.get('/books',BookController.getBooks)
+
+router.get('/books/:bookId',middleware.authenticate,middleware.authorisation, BookController.getDetailsBooks)
+
+router.put('/books/:bookId',middleware.authenticate,middleware.authorisation, BookController.updateBook)
+
+router.delete('/books/:bookId',middleware.authenticate,middleware.authorisation, BookController.deleteBook)
+
+router.put("/books/:bookId/review/:reviewId",ReviewController.updateReview)
+
+router.delete("/books/:bookId/review/:reviewId",ReviewController.deleteReview)
 
 
-module.exports = router;
+module.exports=router;
